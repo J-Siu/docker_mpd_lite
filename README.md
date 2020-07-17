@@ -1,4 +1,4 @@
-Docker MPD Lite with UID/GID + audio GID handling.
+Docker - MPD Lite with UID/GID + audio GID handling.
 
 > MPD Lite is custom compile of MPD which trim down all functions except audio playing.
 

@@ -5,6 +5,7 @@ LABEL version="0.21.25"
 LABEL maintainers="[John Sing Dao Siu](https://github.com/J-Siu)"
 LABEL name="mpd_lite"
 LABEL usage="https://github.com/J-Siu/docker_mpd_lite/blob/master/README.md"
+LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
 RUN wget https://www.musicpd.org/download/mpd/0.21/mpd-0.21.25.tar.xz \
 	&& tar xf mpd-0.21.25.tar.xz
@@ -107,6 +108,7 @@ LABEL version="0.21.25"
 LABEL maintainers="[John Sing Dao Siu](https://github.com/J-Siu)"
 LABEL name="mpd_lite"
 LABEL usage="https://github.com/J-Siu/docker_mpd_lite/blob/master/README.md"
+LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
 COPY --from=build_base /mpd-0.21.25/output/release/mpd /usr/bin/
 RUN apk --no-cache add alsa-lib sqlite-libs ffmpeg-libs
