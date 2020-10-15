@@ -189,6 +189,8 @@ docker-compose up
     - Remove delgroup/deluser ${PUSR}
 - 0.21.25
   - mpd version: 0.21.25
+- 0.22
+  - mpd version: 0.22
 <!--CHANGE-LOG-END-->
 
 ### License
