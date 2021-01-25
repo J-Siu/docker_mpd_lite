@@ -162,7 +162,7 @@ docker-compose up
 
 ### Repository
 
-- [docker_compose](https://github.com/J-Siu/docker_mpd_lite)
+- [docker_mpd_lite](https://github.com/J-Siu/docker_mpd_lite)
 
 ### Contributors
 
