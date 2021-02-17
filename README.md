@@ -193,6 +193,8 @@ docker-compose up
   - mpd version: 0.22
 - 0.22.3
   - mpd version: 0.22.3
+- 0.22.6
+  - mpd version: 0.22.6
 <!--CHANGE-LOG-END-->
 
 ### License
