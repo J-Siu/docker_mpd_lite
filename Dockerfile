@@ -1,17 +1,25 @@
 # docker_mpd_lite
 FROM alpine:edge as build_base
 
-LABEL version="0.22.6"
+LABEL version="0.23.6"
 LABEL maintainers="[John Sing Dao Siu](https://github.com/J-Siu)"
 LABEL name="mpd_lite"
 LABEL usage="https://github.com/J-Siu/docker_mpd_lite/blob/master/README.md"
 LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
-RUN wget https://www.musicpd.org/download/mpd/0.22/mpd-0.22.6.tar.xz \
-	&& tar xf mpd-0.22.6.tar.xz
-WORKDIR /mpd-0.22.6
+RUN wget https://www.musicpd.org/download/mpd/0.23/mpd-0.23.6.tar.xz \
+	&& tar xf mpd-0.23.6.tar.xz
+WORKDIR /mpd-0.23.6
 
-RUN apk --no-cache add build-base boost ninja boost-dev meson alsa-lib-dev sqlite-dev ffmpeg-dev \
+RUN apk --no-cache add \
+		alsa-lib-dev \
+		boost \
+		boost-dev \
+		build-base \
+		ffmpeg-dev \
+		meson \
+		ninja \
+		sqlite-dev \
 	&& meson . output/release \
 		--prefix=/usr \
 		--sysconfdir=/etc \
@@ -39,6 +47,7 @@ RUN apk --no-cache add build-base boost ninja boost-dev meson alsa-lib-dev sqlit
 		-Dhttpd=false \
 		-Dneighbor=false \
 		-Drecorder=false \
+		-Dsnapcast=false \
 		-Dtest=false \
 		-Dwave_encoder=false \
 		-Dadplug=disabled \
@@ -85,7 +94,6 @@ RUN apk --no-cache add build-base boost ninja boost-dev meson alsa-lib-dev sqlit
 		-Dsoundcloud=disabled \
 		-Dsoxr=disabled \
 		-Dsystemd=disabled \
-		-Dtidal=disabled \
 		-Dtremor=disabled \
 		-Dtwolame=disabled \
 		-Dudisks=disabled \
@@ -100,17 +108,17 @@ RUN apk --no-cache add build-base boost ninja boost-dev meson alsa-lib-dev sqlit
 		-Dzlib=disabled \
 		-Dzzip=disabled \
 	&& meson configure output/release \
-	&& ninja -C output/release
+	&& ninja -j 4 -C output/release
 
 FROM alpine:edge
 
-LABEL version="0.22.6"
+LABEL version="0.23.6"
 LABEL maintainers="[John Sing Dao Siu](https://github.com/J-Siu)"
 LABEL name="mpd_lite"
 LABEL usage="https://github.com/J-Siu/docker_mpd_lite/blob/master/README.md"
 LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
-COPY --from=build_base /mpd-0.22.6/output/release/mpd /usr/bin/
+COPY --from=build_base /mpd-0.23.6/output/release/mpd /usr/bin/
 RUN apk --no-cache add alsa-lib sqlite-libs ffmpeg-libs
 
 COPY docker-compose.yml env start.sh mpd.conf /
