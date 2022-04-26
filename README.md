@@ -197,6 +197,8 @@ docker-compose up
   - mpd version: 0.22.6
 - 0.23.6
   - mpd version: 0.23.6
+- 0.23.6-p1
+  - Add docker push github workflow
 <!--CHANGE-LOG-END-->
 
 ### License
