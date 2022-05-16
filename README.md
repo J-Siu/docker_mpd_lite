@@ -1,6 +1,25 @@
-Docker - MPD Lite with UID/GID + audio GID handling.
+# Docker - MPD Lite with UID/GID + audio GID handling [![Paypal donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?business=HZF49NM9D35SJ&no_recurring=0&currency_code=CAD)
 
-> MPD Lite is custom compile of MPD which trim down all functions except audio playing.
+Custom compile of MPD which trim down all functions except audio playing.
+
+### Table Of Content
+<!-- TOC -->
+
+- [Minimal Compilation](#minimal-compilation)
+- [Libraries](#libraries)
+- [Build](#build)
+- [Usage](#usage)
+  - [Host Directories and Volume Mapping](#host-directories-and-volume-mapping)
+  - [MPD_UID / MPD_GID](#mpd_uid--mpd_gid)
+  - [Run](#run)
+  - [Debug / Custom Config](#debug--custom-config)
+  - [Compose](#compose)
+- [Repository](#repository)
+- [Contributors](#contributors)
+- [Change Log](#change-log)
+- [License](#license)
+
+<!-- /TOC -->
 
 ### Minimal Compilation
 
