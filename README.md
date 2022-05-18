@@ -5,6 +5,7 @@ Custom compile of MPD which trim down all functions except audio playing.
 ### Table Of Content
 <!-- TOC -->
 
+- [Table Of Content](#table-of-content)
 - [Minimal Compilation](#minimal-compilation)
 - [Libraries](#libraries)
 - [Build](#build)
@@ -20,6 +21,7 @@ Custom compile of MPD which trim down all functions except audio playing.
 - [License](#license)
 
 <!-- /TOC -->
+<!--more-->
 
 ### Minimal Compilation
 
