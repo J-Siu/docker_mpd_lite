@@ -5,13 +5,12 @@ Custom compile of MPD which trim down all functions except audio playing.
 ### Table Of Content
 <!-- TOC -->
 
-- [Table Of Content](#table-of-content)
 - [Minimal Compilation](#minimal-compilation)
 - [Libraries](#libraries)
 - [Build](#build)
 - [Usage](#usage)
   - [Host Directories and Volume Mapping](#host-directories-and-volume-mapping)
-  - [MPD_UID / MPD_GID](#mpd_uid--mpd_gid)
+  - [MPD\_UID / MPD\_GID](#mpd_uid--mpd_gid)
   - [Run](#run)
   - [Debug / Custom Config](#debug--custom-config)
   - [Compose](#compose)
@@ -62,7 +61,7 @@ Library|Usage
 ```sh
 git clone https://github.com/J-Siu/docker_mpd_lite.git
 cd docker_mpd_lite
-docker build -t jsiu/mpd .
+docker buildx build -t jsiu/mpd_lite .
 ```
 
 ### Usage
