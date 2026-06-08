@@ -1,16 +1,16 @@
 # docker_mpd_lite
-FROM alpine:edge AS build_base
 ARG VERSION="0.24.12"
-LABEL version=$VERSION
-LABEL maintainers="[John Sing Dao Siu](https://github.com/J-Siu)"
-LABEL name="mpd_lite"
-LABEL usage="https://github.com/J-Siu/docker_mpd_lite/blob/master/README.md"
-LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
-RUN wget https://www.musicpd.org/download/mpd/0.24/mpd-$VERSION.tar.xz \
-&& tar xf mpd-$VERSION.tar.xz
-WORKDIR /mpd-$VERSION
+FROM alpine:edge AS base
 
+FROM base AS build_base
+ARG VERSION
+
+RUN VER=$(echo ${VERSION} | cut -d. -f-2) \
+&& wget https://www.musicpd.org/download/mpd/${VER}/mpd-${VERSION}.tar.xz \
+&& tar xf mpd-${VERSION}.tar.xz
+
+WORKDIR /mpd-${VERSION}
 RUN apk --no-cache add \
 alsa-lib-dev \
 boost \
@@ -109,15 +109,15 @@ sqlite-dev \
 && meson configure --no-pager output/release \
 && ninja -j 4 -C output/release
 
-FROM alpine:edge
-ARG VERSION="0.24.12"
-LABEL version=$VERSION
+FROM base
+ARG VERSION
+LABEL version=${VERSION}
 LABEL maintainers="[John Sing Dao Siu](https://github.com/J-Siu)"
 LABEL name="mpd_lite"
 LABEL usage="https://github.com/J-Siu/docker_mpd_lite/blob/master/README.md"
 LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
-COPY --from=build_base /mpd-$VERSION/output/release/mpd /usr/bin/
+COPY --from=build_base /mpd-${VERSION}/output/release/mpd /usr/bin/
 RUN apk --no-cache add alsa-lib sqlite-libs ffmpeg-libs
 
 COPY docker-compose.yml env start.sh mpd.conf /
