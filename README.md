@@ -1,9 +1,7 @@
-# Docker - MPD Lite with UID/GID + audio GID handling [![Paypal donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?business=HZF49NM9D35SJ&no_recurring=0&currency_code=CAD)
+# Docker - MPD Lite with UID/GID + audio GID handling
 
 Custom compile of MPD which trim down all functions except audio playing.
 
-### Table Of Content
-<!-- TOC -->
 
 - [Minimal Compilation](#minimal-compilation)
 - [Libraries](#libraries)
@@ -19,7 +17,6 @@ Custom compile of MPD which trim down all functions except audio playing.
 - [Change Log](#change-log)
 - [License](#license)
 
-<!-- /TOC -->
 <!--more-->
 
 ### Minimal Compilation
@@ -27,19 +24,19 @@ Custom compile of MPD which trim down all functions except audio playing.
 Only following MPD build options are enabled in Dockerfile:
 
 ```sh
--Dcue=true \
--Ddatabase=true \
--Depoll=true \
--Deventfd=true \
--Dfifo=true \
--Dinotify=true \
--Dpipe=true \
--Dsignalfd=true \
--Dtcp=true \
--Dalsa=enabled \
--Dffmpeg=enabled \
--Dipv6=enabled \
--Dsqlite=enabled
+30:-Dalsa=enabled \
+37:-Dcue=true \
+40:-Ddatabase=true \
+44:-Depoll=true \
+45:-Deventfd=true \
+48:-Dffmpeg=enabled \
+49:-Dfifo=true \
+57:-Dinotify=true \
+58:-Dipv6=enabled \
+77:-Dpipe=true \
+84:-Dsignalfd=true \
+91:-Dsqlite=enabled \
+94:-Dtcp=true \
 ```
 
 All other options are explicitly set to false or disabled.
