@@ -1,5 +1,5 @@
 # docker_mpd_lite
-ARG VERSION="0.24.12"
+ARG VERSION="0.24.13"
 
 FROM alpine:edge AS base
 
