@@ -14,7 +14,6 @@ Custom compile of MPD which trim down all functions except audio playing.
   - [Compose](#compose)
 - [Repository](#repository)
 - [Contributors](#contributors)
-- [Change Log](#change-log)
 - [License](#license)
 
 <!--more-->
@@ -184,39 +183,6 @@ docker-compose up
 ### Contributors
 
 - [John Sing Dao Siu](https://github.com/J-Siu)
-
-### Change Log
-
-- 0.21.14
-  - Matching mpd version number
-  - Base image: alpine:edge
-  - mpd version: 0.21.14
-- 0.21.19
-  - Matching mpd version number
-  - Base image: alpine:edge
-  - mpd version: 0.21.19
-- 0.21.23
-  - mpd version: 0.21.23
-- 0.21.24
-  - mpd version: 0.21.24
-  - Fix base image: alpine:edge
-  - start.sh
-    - Use exec so start.sh can exit
-    - Add exit code 1
-    - Remove delgroup/deluser ${PUSR}
-- 0.21.25
-  - mpd version: 0.21.25
-- 0.22
-  - mpd version: 0.22
-- 0.22.3
-  - mpd version: 0.22.3
-- 0.22.6
-  - mpd version: 0.22.6
-- 0.23.6
-  - mpd version: 0.23.6
-- 0.23.6-p1
-  - Add docker push github workflow
-<!--CHANGE-LOG-END-->
 
 ### License
 
