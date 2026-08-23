@@ -29,3 +29,5 @@
   - Add docker push github workflow
 - 0.24.13
   - mpd version: 0.24.13
+- 0.24.14
+  - mpd version: 0.24.14
