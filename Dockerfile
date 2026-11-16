@@ -1,17 +1,18 @@
 # docker_mpd_lite
-ARG VER="0.24.18"
+
+# cspell:disable
+
+ARG PKG="mpd_lite"
+ARG PKG_BASE="mpd"
 ARG USR="https://github.com/J-Siu"
+ARG VER="0.24.19"
 
 FROM alpine:edge AS base
 
 FROM base AS build_base
+ARG PKG_BASE
 ARG VER
 
-RUN VER=$(echo ${VER} | cut -d. -f-2) \
-&& wget https://www.musicpd.org/download/mpd/${VER}/mpd-${VER}.tar.xz \
-&& tar xf mpd-${VER}.tar.xz
-
-WORKDIR /mpd-${VER}
 RUN apk --no-cache add \
 alsa-lib-dev \
 boost \
@@ -20,8 +21,14 @@ build-base \
 ffmpeg-dev \
 meson \
 ninja \
-sqlite-dev \
-&& meson . output/release \
+sqlite-dev
+
+RUN VER_DIR=$(echo ${VER} | cut -d. -f-2) \
+&& echo $VER_DIR \
+&& wget https://www.musicpd.org/download/${PKG_BASE}/${VER_DIR}/mpd-${VER}.tar.xz \
+&& tar xf ${PKG_BASE}-${VER}.tar.xz
+WORKDIR /${PKG_BASE}-${VER}
+RUN meson setup . output/release \
 --prefix=/usr \
 --sysconfdir=/etc \
 --mandir=/usr/share/man \
@@ -111,19 +118,26 @@ sqlite-dev \
 && ninja -j 4 -C output/release
 
 FROM base
-ARG VER
+ARG PKG
+ARG PKG_BASE
 ARG USR
+ARG VER
 LABEL version=${VER}
 LABEL maintainers="[John Sing Dao Siu](${USR})"
-LABEL name="mpd_lite"
-LABEL usage="${USR}/docker_mpd/blob/master/README.md"
+LABEL name="${PKG}"
+LABEL usage="${USR}/docker_mpd_lite/blob/master/README.md"
 LABEL description="Docker - MPD Lite with UID/GID + audio GID handling."
 
-COPY --from=build_base /mpd-${VER}/output/release/mpd /usr/bin/
-RUN apk --no-cache add alsa-lib sqlite-libs ffmpeg-libs
-
+COPY --from=build_base /${PKG_BASE}-${VER}/output/release/mpd /usr/bin/
 COPY docker-compose.yml env start.sh mpd.conf /
-RUN chmod u+x /start.sh \
+RUN apk --no-cache add \
+ca-certificates \
+ca-certificates-bundle \
+tzdata \
+alsa-lib \
+sqlite-libs \
+ffmpeg-libs \
+&& chmod u+x /start.sh \
 && chmod ugo+x /usr/bin/mpd \
 && mkdir /mpd
 

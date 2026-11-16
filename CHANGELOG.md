@@ -33,3 +33,5 @@
   - mpd version: 0.24.14
 - 0.24.15
   - mpd version: 0.24.15
+- 0.24.19
+  - mpd version: 0.24.19
