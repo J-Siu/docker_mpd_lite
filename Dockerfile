@@ -5,7 +5,7 @@
 ARG PKG="mpd_lite"
 ARG PKG_BASE="mpd"
 ARG USR="https://github.com/J-Siu"
-ARG VER="0.24.19"
+ARG VER="0.24.20"
 
 FROM alpine:edge AS base
 
